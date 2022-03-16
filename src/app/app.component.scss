@@ -1,0 +1,228 @@
+
+.logo-center {
+  width: 100%;
+}
+
+.item-logo {
+  display: flex;
+  position: fixed;
+  margin-left: 45%;
+  width: 5%;
+  float: top;
+}
+
+@font-face {
+  font-family: 'HPfont';
+  src:  url('../assets/fonts/HARRYP__.TTF') format('truetype')
+}
+
+@font-face {
+  font-family: 'BluuNext-Titling';
+  src:  url('../assets/fonts/BluuNext-Titling.otf') format('opentype')
+}
+
+.nav-item > a {
+  color: #fafafa;
+  font-family: 'HPfont', serif;
+  font-size: 2em;
+}
+
+.nav-hp {
+  width: 100%;
+  height: 6vh;
+}
+
+li {
+  display: inline-block;
+  margin: auto;
+}
+
+.mt-6 {
+ margin-top: 6vh;
+}
+
+.intro-container {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  z-index: 99999;
+  position: sticky;
+  scroll-snap-align: start;
+}
+
+.title-howard {
+  color: #fafafa;
+  font-family: 'HPfont', serif;
+  font-size: 5em;
+}
+
+.row-center {
+  border: 1px solid #0503033b;
+  border-radius: 5px;
+  padding: 100px;
+  background: #000000db;
+  animation: 1s ease-in show-row;
+}
+
+@keyframes show-row {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.personajes-container {
+  scroll-snap-align: start;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99999;
+  position: sticky;
+}
+
+.col-center {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+}
+
+.list {
+  height: 500px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.rounded-img {
+  border-radius: 15px;
+  height: 130px;
+}
+
+.logo-house {
+  margin: auto;
+  display: flex;
+  width: 50%;
+}
+.col-house {
+  align-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.row-item {
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 15px;
+}
+
+.row-item:hover {
+  background: #f0f8ff38;
+  transition: all .3s ease-in;
+  color: #CCC;
+}
+
+.row-item:hover > .text-row {
+  color: #fafafa;
+}
+
+
+.card {
+  background: #000000db;
+}
+
+.text-character {
+  font-family: 'BluuNext-Titling', serif;
+  color: #fafafa;
+  font-size: 20px;
+}
+
+.img-character {
+  border-radius: 20px;
+  margin: auto;
+}
+
+.title-card {
+  font-family: 'BluuNext-Titling', serif;
+  color: #fafafa;
+  font-size: 30px;
+}
+
+select {
+  background: #020c04;
+  border-radius: 6px;
+  height: 35px;
+  color: #CCC;
+}
+
+button {
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background: #810c0c;
+  padding: 0px;
+  color: #FFF;
+}
+
+input {
+  background: #020c04;
+  border-radius: 6px;
+  height: 35px;
+  color: #CCC;
+  border: 1px solid #CCC;
+  padding: 10px;
+}
+
+textarea{
+  background: #020c04;
+  border-radius: 6px;
+  color: #CCC;
+  border: 1px solid #CCC;
+  padding: 10px;
+}
+
+
+@media only screen and (max-width: 700px) {
+  .title-howard {
+    color: #fafafa;
+    font-family: 'HPfont', serif;
+    font-size: 40px;
+  }
+
+  .row-center {
+    padding: 30px;
+    margin: auto;
+  }
+
+  .nav-hp {
+    height: 100vh;
+    background: #000;
+  }
+
+  .item-logo {
+    display: block;
+    position: inherit;
+    margin: auto;
+    width: 20%;
+    float: top;
+  }
+
+  .col-6 {
+    width: 100%;
+  }
+
+  .col-5 {
+    width: 100%;
+  }
+
+  .col-1 {
+    width: 100%;
+  }
+}
+

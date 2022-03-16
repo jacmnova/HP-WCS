@@ -1,0 +1,375 @@
+<header class="">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light  fixed-top">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="jumbotronExample.toggle()"
+        aria-controls="jumbotronExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div
+        mdbCollapse
+        #jumbotronExample="mdbCollapse"
+        class="collapse navbar-collapse"
+        id="jumbotronExample"
+      >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-hp">
+          <li class="nav-item active" (click)="jumbotronExample.toggle()">
+            <a class="nav-link" aria-current="page" href="#Home" >Home</a>
+          </li>
+          <li class="nav-item" (click)="jumbotronExample.toggle()">
+            <a class="nav-link" href="#Personajes">Personajes</a>
+          </li>
+          <li class="item-logo" (click)="jumbotronExample.toggle()">
+            <img src="./assets/img/logo.png" class="logo-center">
+          </li>
+          <li class="nav-item" (click)="jumbotronExample.toggle()">
+            <a class="nav-link" href="#Estudiantes">Estudiantes</a>
+          </li>
+          <li class="nav-item" (click)="jumbotronExample.toggle()">
+            <a class="nav-link" href="#Profesores">Profesores</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+</header>
+
+<div class="container-fluid bg" id="main">
+
+
+</div>
+
+<div class="container mt-6 intro-container" id="Home">
+  <div class="row w-100 row-center">
+    <div class="col-12">
+      <h1 class="title-howard"> Portal institucional <hr> Escuela de Hechicería y brujería Hogwart</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-6 personajes-container" id="Personajes">
+  <div class="row" *ngIf="character === false">
+    <div class="col-12 col-center">
+      <div class="card w-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="title-card">Consulta Casa De Hechicería</h5>
+            </div>
+            <div class="col-5">
+              <form [formGroup]="formHouses">
+                <select formControlName="houseName" class="w-100">
+                  <option value="slytherin">Slytherin</option>
+                  <option value="gryffindor">Gryffindor</option>
+                  <option value="ravenclaw">Ravenclaw</option>
+                  <option value="hufflepuff">Hufflepuff</option>
+                </select>
+              </form>
+
+
+            </div>
+            <div class="col-1">
+              <button  (click)="searchHouse()">Buscar</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6 col-house">
+              <img src="./assets/img/Slytherin.png" width="400" class="logo-house" *ngIf="houseSearchActivate === 'slytherin'">
+              <img src="./assets/img/gryffindor.png" width="400" class="logo-house" *ngIf="houseSearchActivate === 'gryffindor'">
+              <img src="./assets/img/raveclaw.png" width="400" class="logo-house" *ngIf="houseSearchActivate === 'ravenclaw'">
+              <img src="./assets/img/hufflepuf.png" width="400" class="logo-house" *ngIf="houseSearchActivate === 'hufflepuff'">
+
+            </div>
+            <div class="col-6">
+              <div class="row mt-5">
+                <div class="col-12">
+                  <input class="w-100" type="text" placeholder="Buscar" [(ngModel)]="filterTerm">
+                </div>
+              </div>
+              <div class="list mt-2">
+                <div class="row mt-3 row-item" *ngFor="let item of arrayHouses |filter: filterTerm" (click)="showCharacter(item)" >
+                  <div class="col-4">
+                    <img [src]="item.image" alt="" width="100" class="rounded-img" *ngIf="item.image !== ''"/>
+                    <img src="../assets/img/profile-default.png" alt="" width="100" class="rounded-img" *ngIf="item.image == ''"/>
+                  </div>
+                  <div class="col-6 text-row">
+                    <div class="row">
+                      <div class="col-12  text-character">
+                        Name: {{ item.name }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12  text-character">
+                        Patronus: {{ item.patronus }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12  text-character" *ngIf="item.yearOfBirth > 0">
+                        Age: {{  2022 - item.yearOfBirth }}
+                      </div>
+                      <div class="col-12  text-character" *ngIf="item.yearOfBirth == ''">
+                        Age: N/A
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="character === true">
+    <div class="col-12 col-center">
+      <div class="card w-100">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6 ">
+              <div class="row">
+                <div class="col-12 d-flex">
+                  <img [src]="characterActivate.image" width="200" class="img-character">
+                </div>
+              </div>
+
+              <hr>
+              <div class="row">
+                <div class="col-12 text-character justify-content-center" style="text-align: center">
+                 {{characterActivate.name}}
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6 text-character list">
+
+              <br>
+              Alternate Names: {{characterActivate.alternate_names}}
+              <hr>
+              Species: {{characterActivate.species}}
+              <hr>
+              Gender: {{characterActivate.gender}}
+              <br>
+              House: {{characterActivate.house}}
+              <hr>
+              Date Of Birth: {{characterActivate.dateOfBirth}}
+              <hr>
+              Wizard: {{characterActivate.wizard}}
+              <hr>
+              Ancestry: {{characterActivate.ancestry}}
+              <hr>
+              EyeColour: {{characterActivate.eyeColour}}
+              <hr>
+              HairColour: {{characterActivate.hairColour}}
+              <hr>
+              Wand: {{characterActivate.wand.wood.core}}
+              <hr>
+              Patronus: {{characterActivate.patronus}}
+              <hr>
+              Hogwarts Student: {{characterActivate.hogwartsStudent}}
+              <hr>
+              Hogwarts Staff: {{characterActivate.hogwartsStaff}}
+              <hr>
+              Actor: {{characterActivate.actor}}
+              <hr>
+              Alternate Actors: {{characterActivate.alternate_actors}}
+              <hr>
+              Alive: {{characterActivate.alive}}
+              <hr>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" (click)="closeCharacter()">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-6 personajes-container" id="Estudiantes">
+  <div class="row">
+    <div class="col-12 col-center">
+      <div class="card w-100">
+        <div class="card-body" *ngIf="soliciutdesActivate === false">
+          <div class="row">
+            <div class="col-8">
+              <h5 class="text-character"> Estudiantes</h5>
+            </div>
+            <div class="col-4">
+              <button  (click)="solicitudes()">Solicitudes</button>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-12">
+              <input class="w-100" type="text" placeholder="Buscar" [(ngModel)]="filterCharacter">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="list mt-2">
+                <div class="row mt-3 row-item" *ngFor="let item of arrayCharacters |filter: filterCharacter" (click)="showCharacter(item)" >
+                  <div class="col-4">
+                    <img [src]="item.image" alt="" width="100" class="rounded-img" *ngIf="item.image !== ''"/>
+                    <img src="../assets/img/profile-default.png" alt="" width="100" class="rounded-img" *ngIf="item.image == ''"/>
+                  </div>
+                  <div class="col-6 text-row">
+                    <div class="row">
+                      <div class="col-12  text-character">
+                        Name: {{ item.name }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12  text-character">
+                        Patronus: {{ item.patronus }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12  text-character" *ngIf="item.yearOfBirth > 0">
+                        Age: {{  2022 - item.yearOfBirth }}
+                      </div>
+                      <div class="col-12  text-character" *ngIf="item.yearOfBirth == ''">
+                        Age: N/A
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body" *ngIf="soliciutdesActivate === true">
+          <div class="row w-100">
+            <div class="col-6">
+              <div class="row">
+                <div class="col-11">
+                  <h5 class="text-character">Nueva Solicitud</h5>
+                </div>
+                <div class="col-1">
+                  <button type="button" (click)="closeSolicitudes()">
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+                </div>
+              </div>
+              <form [formGroup]="newSolicitud">
+                <div class="row mt-5">
+                  <div class="col-12 mt-2 w-100">
+                    <input formControlName="nombre" class="w-100" placeholder="Nombre">
+                  </div>
+                  <div class="col-12 mt-2 w-100">
+                    <input formControlName="apellido" class="w-100" placeholder="Apellido">
+                  </div>
+                  <div class="col-12 mt-2 w-100">
+                    <input formControlName="email" class="w-100" placeholder="Email">
+                  </div>
+                  <div class="col-12 mt-2 w-100">
+                    <textarea formControlName="detalles" class="w-100" placeholder="Detalles"></textarea>
+                  </div>
+                  <div class="col-12 mt-2 w-100">
+                    <button  (click)="newSolicitudes()">Enviar Solicitud</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <div class="list" *ngIf="arraySolicitudes.length > 0">
+                <div class="row mt-3 row-item" *ngFor="let item of arraySolicitudes">
+                  <div class="col-12 ">
+                    Nombre & Apellido: {{item.nombre}} | {{item.apellido}}
+                    <hr>
+                    Email: {{item.email}}
+                    <hr>
+                    Detalle: {{item.detalles}}
+                    <hr>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-6 personajes-container" id="Profesores">
+  <div class="row">
+    <div class="col-12 col-center">
+      <div class="card w-100">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="text-character">Profesores</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <input class="w-100" type="text" placeholder="Buscar" [(ngModel)]="filterTeacher">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="list mt-5">
+                <div class="row mt-3 row-item" *ngFor="let item of arrayTeacher |filter: filterTeacher" (click)="showCharacter(item)" >
+                  <div class="col-4">
+                    <img [src]="item.image" alt="" width="100" class="rounded-img" *ngIf="item.image !== ''"/>
+                    <img src="../assets/img/profile-default.png" alt="" width="100" class="rounded-img" *ngIf="item.image == ''"/>
+                  </div>
+                  <div class="col-6 text-row">
+                    <div class="row">
+                      <div class="col-12  text-character">
+                        Name: {{ item.name }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12  text-character">
+                        Patronus: {{ item.patronus }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12  text-character" *ngIf="item.yearOfBirth > 0">
+                        Age: {{  2022 - item.yearOfBirth }}
+                      </div>
+                      <div class="col-12  text-character" *ngIf="item.yearOfBirth == ''">
+                        Age: N/A
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
